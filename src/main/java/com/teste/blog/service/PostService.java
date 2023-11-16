@@ -1,13 +1,17 @@
 package com.teste.blog.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.teste.blog.controller.dto.CommentDto;
+import com.teste.blog.controller.dto.CommentResp;
 import com.teste.blog.controller.dto.PostDto;
 import com.teste.blog.controller.dto.PostResp;
+import com.teste.blog.model.Comment;
 import com.teste.blog.model.Post;
 import com.teste.blog.model.Users;
 import com.teste.blog.repository.CommentRepository;
@@ -30,6 +34,10 @@ public class PostService {
 	}
 
 	public void deletePost(Users user, Long postId) {
+		
+		List<Comment> list = commentRepository.findByPostId(postId);
+		
+		commentRepository.deleteAll(list);
 		
 		Post post = postRepository.findByUserAndId(user.getId(), postId);
 		
@@ -58,17 +66,37 @@ public class PostService {
 
 	public void createComment(Users user, CommentDto dto) {
 		
+		Post post = postRepository.findById(dto.getPost_id()).get();
+		
+		Comment comment = new Comment( user, post, dto.getText());
+		
+		commentRepository.save(comment);
 		
 	}
 
 	public void deleteComment(Users user, Long commentId) {
-		// TODO Auto-generated method stub
+
+		Comment comment = commentRepository.findByUserAndId(user.getId(), commentId);
+		
+		commentRepository.delete(comment);
 		
 	}
 
-	public Page<CommentDto> lastCommentsForPost(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+	public Page<CommentResp> lastCommentsForPost(Pageable pageable, Long postId) {
+	    
+		Page<Comment> commentsPage = commentRepository.findByPostId(postId, pageable);
+	    
+	    return commentsPage.map(comment -> mapToCommentDto(comment));
 	}
+
+	public CommentResp mapToCommentDto(Comment comment) {
+		
+		CommentResp commentResp = new CommentResp();
+		commentResp.setComment_id(comment.getId());
+		commentResp.setText(comment.getText());
+	    
+	    return commentResp;
+	}
+
 
 }

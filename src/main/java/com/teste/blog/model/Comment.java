@@ -26,10 +26,13 @@ public class Comment {
 
     @Column ( name = "text" )
     private String text;
+    
+    public Comment() {
+    	
+    }
 
-	public Comment(Long id, Users user, Post post, String text) {
-	
-		this.id = id;
+	public Comment(Users user, Post post, String text) {
+
 		this.user = user;
 		this.post = post;
 		this.text = text;

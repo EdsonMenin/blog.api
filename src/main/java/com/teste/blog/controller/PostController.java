@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teste.blog.controller.dto.CommentDto;
+import com.teste.blog.controller.dto.CommentResp;
 import com.teste.blog.controller.dto.PostDto;
 import com.teste.blog.controller.dto.PostResp;
 import com.teste.blog.model.Users;
@@ -97,7 +98,7 @@ public class PostController {
 	    try {
 	    	
 	        Pageable pageable = PageRequest.of(page, size);
-	        Page<CommentDto> postsPage = postService.lastCommentsForPost(pageable);
+	        Page<CommentResp> postsPage = postService.lastCommentsForPost(pageable, postId);
 
 	        return new ResponseEntity<>(postsPage, HttpStatus.OK);
 	    } catch (Exception e) {
