@@ -6,7 +6,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.teste.blog.model.User;
+import com.teste.blog.model.Users;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -22,7 +22,7 @@ public class TokenService {
 	@Value("${bet.jwt.secret}")
 	private String secret;
 
-	public String generateToken(User user) {
+	public String generateToken(Users user) {
 		
 		Date date = new Date();
 		Date dateEx = new Date(date.getTime() + Long.parseLong( expiration ) );

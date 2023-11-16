@@ -1,15 +1,15 @@
 package com.teste.blog.model;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "comment")
 public class Comment {
 	
     @Id
@@ -18,7 +18,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Users user;
 
     @ManyToOne
     @JoinColumn(name = "post_id")
@@ -27,7 +27,7 @@ public class Comment {
     @Column ( name = "text" )
     private String text;
 
-	public Comment(Long id, User user, Post post, String text) {
+	public Comment(Long id, Users user, Post post, String text) {
 	
 		this.id = id;
 		this.user = user;
@@ -43,22 +43,18 @@ public class Comment {
 		this.id = id;
 	}
 
-	public User getUser() {
+	public Users getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 
 	public Post getPost() {
 		return post;
 	}
-
-	public void setPost(Post post) {
-		this.post = post;
-	}
-
+	
 	public String getText() {
 		return text;
 	}
@@ -66,4 +62,8 @@ public class Comment {
 	public void setText(String text) {
 		this.text = text;
 	}
+	
+	public void setPost(Post post) {
+        this.post = post;
+    }
 }

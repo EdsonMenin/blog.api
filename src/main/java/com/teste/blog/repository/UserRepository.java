@@ -2,10 +2,10 @@ package com.teste.blog.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.teste.blog.model.User;
+import com.teste.blog.model.Users;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<Users, Long> {
 
-	User findByUsername(String username);
+	Users findByUsername(String username);
 
 }

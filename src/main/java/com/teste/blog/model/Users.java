@@ -1,14 +1,14 @@
 package com.teste.blog.model;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 
-@Entity
-public class User {
+@Entity(name = "users")
+public class Users {
     
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +23,10 @@ public class User {
 	@Column ( name = "password" )
 	public String password;
 	
-	public User() {	
+	public Users() {	
 	}
 	
-	public User(String name, String username, String password) {
+	public Users(String name, String username, String password) {
 		this.name = name;
 		this.username = username;
 		this.password = password;

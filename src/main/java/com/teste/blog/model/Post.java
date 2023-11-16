@@ -3,19 +3,17 @@ package com.teste.blog.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-
-
-@Entity
+@Entity(name = "post")
 public class Post {
 	
     @Id
@@ -24,7 +22,7 @@ public class Post {
     
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Users user;
     
     @Column ( name = "text" )
     private String text;
@@ -41,7 +39,7 @@ public class Post {
 	public Post() {
 	}
 
-	public Post(Long id, User user, String text, String imageUrl, String linkUrl) {
+	public Post(Long id, Users user, String text, String imageUrl, String linkUrl) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -56,10 +54,10 @@ public class Post {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public User getUser() {
+	public Users getUser() {
 		return user;
 	}
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 	public String getText() {
