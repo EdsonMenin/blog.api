@@ -1,5 +1,7 @@
 package com.teste.blog.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,24 @@ public class UserService {
 	
 	@Autowired
 	private TokenService tokenService;
+	
+	public Users retrieveUser(HttpServletRequest request) {
+		
+		String token = request.getHeader("Authorization");
+		
+		if( token == null || token.isEmpty() ) {
+			return null;
+		}
+		
+		boolean valid = tokenService.isTokenValid(token);
+		
+		if(valid) {
+			String username = tokenService.getUsernameUser(token);
+			return userRepository.findByUsername(username);
+		}
+		
+		return null;
+	}
 
 	public void register(UserDto dto) {
 		

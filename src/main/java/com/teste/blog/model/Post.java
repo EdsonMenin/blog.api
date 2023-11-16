@@ -39,9 +39,8 @@ public class Post {
 	public Post() {
 	}
 
-	public Post(Long id, Users user, String text, String imageUrl, String linkUrl) {
-		super();
-		this.id = id;
+	public Post(Users user, String text, String imageUrl, String linkUrl) {
+		
 		this.user = user;
 		this.text = text;
 		this.imageUrl = imageUrl;
