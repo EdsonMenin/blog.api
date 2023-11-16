@@ -2,23 +2,23 @@ package com.teste.blog.controller.dto;
 
 public class PictureDto {
 
-	public String albumId;
+	public Long albumId;
 	public String imageUrl;
 	
 	public PictureDto() {	
 	}
 
-	public PictureDto(String albumId, String imageUrl) {
+	public PictureDto(Long albumId, String imageUrl) {
 		super();
 		this.albumId = albumId;
 		this.imageUrl = imageUrl;
 	}
 
-	public String getAlbumId() {
+	public Long getAlbumId() {
 		return albumId;
 	}
 
-	public void setAlbumId(String albumId) {
+	public void setAlbumId(Long albumId) {
 		this.albumId = albumId;
 	}
 

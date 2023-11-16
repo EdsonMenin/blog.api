@@ -43,7 +43,7 @@ public class AlbumController {
 	    try {
 	    	
 	        Pageable pageable = PageRequest.of(page, size);
-	        Page<AlbumResp> postsPage = albumService.lastAlbuns(pageable);
+	        Page<AlbumResp> postsPage = albumService.lastAlbums(pageable);
 
 	        return new ResponseEntity<>(postsPage, HttpStatus.OK);
 	        

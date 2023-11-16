@@ -37,11 +37,11 @@ public class PostService {
 		
 		List<Comment> list = commentRepository.findByPostId(postId);
 		
-		commentRepository.deleteAll(list);
+		if( !list.isEmpty() ) commentRepository.deleteAll(list);
 		
 		Post post = postRepository.findByUserAndId(user.getId(), postId);
 		
-		postRepository.delete(post);
+		if (post != null) postRepository.delete(post);
 	}
 
 	public Page<PostResp> lastPosts(Pageable pageable) {
@@ -68,18 +68,19 @@ public class PostService {
 		
 		Post post = postRepository.findById(dto.getPost_id()).get();
 		
-		Comment comment = new Comment( user, post, dto.getText());
-		
-		commentRepository.save(comment);
-		
+		if (post != null) {
+			
+			Comment comment = new Comment( user, post, dto.getText());
+			
+			commentRepository.save(comment);
+		}
 	}
 
 	public void deleteComment(Users user, Long commentId) {
 
 		Comment comment = commentRepository.findByUserAndId(user.getId(), commentId);
 		
-		commentRepository.delete(comment);
-		
+		if (comment != null) commentRepository.delete(comment);
 	}
 
 	public Page<CommentResp> lastCommentsForPost(Pageable pageable, Long postId) {

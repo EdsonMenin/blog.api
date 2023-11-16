@@ -1,5 +1,6 @@
 package com.teste.blog.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +14,12 @@ public class Picture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column ( name = "imageurl" )
     private String imageUrl;
+    
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Users user;
 
     @ManyToOne
     @JoinColumn(name = "album_id")
@@ -23,9 +29,10 @@ public class Picture {
     	
     }
 
-	public Picture(String imageUrl, Album album) {
+	public Picture(String imageUrl, Users user, Album album) {
 		super();
 		this.imageUrl = imageUrl;
+		this.user = user;
 		this.album = album;
 	}
 
