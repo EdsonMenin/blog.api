@@ -5,10 +5,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.teste.blog.controller.dto.CommentDto;
 import com.teste.blog.controller.dto.PostDto;
 import com.teste.blog.controller.dto.PostResp;
 import com.teste.blog.model.Post;
 import com.teste.blog.model.Users;
+import com.teste.blog.repository.CommentRepository;
 import com.teste.blog.repository.PostRepository;
 
 @Service
@@ -16,6 +18,9 @@ public class PostService {
 	
 	@Autowired
 	private PostRepository postRepository;
+	
+	@Autowired
+	private CommentRepository commentRepository;
 
 	public void createPost(Users user, PostDto dto) {
 		
@@ -49,6 +54,21 @@ public class PostService {
 	    postResp.setImageUrl(post.getImageUrl());
 	    postResp.setLinkUrl(post.getLinkUrl());
 	    return postResp;
+	}
+
+	public void createComment(Users user, CommentDto dto) {
+		
+		
+	}
+
+	public void deleteComment(Users user, Long commentId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Page<CommentDto> lastCommentsForPost(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
