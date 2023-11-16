@@ -13,7 +13,7 @@ public class Picture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String imageUrl;
 
     @ManyToOne
     @JoinColumn(name = "album_id")
@@ -22,10 +22,10 @@ public class Picture {
     public Picture() {
     	
     }
-    		
-	public Picture(String name, Album album) {
+
+	public Picture(String imageUrl, Album album) {
 		super();
-		this.name = name;
+		this.imageUrl = imageUrl;
 		this.album = album;
 	}
 
@@ -37,12 +37,12 @@ public class Picture {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public Album getAlbum() {
