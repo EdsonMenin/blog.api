@@ -8,9 +8,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.teste.blog.controller.dto.CommentDto;
-import com.teste.blog.controller.dto.CommentResp;
 import com.teste.blog.controller.dto.PostDto;
-import com.teste.blog.controller.dto.PostResp;
+import com.teste.blog.controller.resp.CommentResp;
+import com.teste.blog.controller.resp.PostResp;
 import com.teste.blog.model.Comment;
 import com.teste.blog.model.Post;
 import com.teste.blog.model.Users;

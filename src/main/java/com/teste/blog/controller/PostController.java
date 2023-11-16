@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teste.blog.controller.dto.CommentDto;
-import com.teste.blog.controller.dto.CommentResp;
 import com.teste.blog.controller.dto.PostDto;
-import com.teste.blog.controller.dto.PostResp;
+import com.teste.blog.controller.resp.CommentResp;
+import com.teste.blog.controller.resp.PostResp;
 import com.teste.blog.model.Users;
 import com.teste.blog.service.PostService;
 import com.teste.blog.service.UserService;

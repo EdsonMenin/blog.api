@@ -1,4 +1,4 @@
-package com.teste.blog.controller.dto;
+package com.teste.blog.controller.resp;
 
 public class PostResp {
 
